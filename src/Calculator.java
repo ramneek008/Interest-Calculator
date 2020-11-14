@@ -39,7 +39,14 @@ public class Calculator {
 			
 			case 3:
 			{
-				
+				RDAccount rd = new RDAccount();
+				System.out.print("Enter the monthly amount: ");
+				rd.setMonthlyAmount(sc.nextDouble());
+				System.out.print("Enter the no. of months: ");
+				rd.setNoOfMonths(sc.nextInt());
+				System.out.print("Enter your age: ");
+				rd.setAge(sc.nextInt());
+				System.out.println("Interest gained: Rs. " + rd.calculateInterest() );
 			}
 			
 			case 4:

@@ -30,7 +30,7 @@ public class Calculator {
 				fd.setNoOfDays(sc.nextInt());
 				System.out.print("Enter your age: ");
 				fd.setAgeOfACHolder(sc.nextInt());
-				System.out.println("Interest gained is: "+ fd.getInterestRate());
+				System.out.println("Interest gained is: Rs. "+ fd.calculateInterest());
 			}
 			
 			case 3:

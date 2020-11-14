@@ -17,8 +17,11 @@ public class Calculator {
 			switch(choice) {
 			case 1:
 			{
+				SBAccount sb = new SBAccount();
 				System.out.print("Enter the Average amount in your account: ");
-				System.out.println("Interest gained: ");
+				sb.setAmount(sc.nextDouble());
+				System.out.println("Interest gained: Rs. " + sb.calculateInterest());
+				break;
 			}
 			
 			case 2:
@@ -31,6 +34,7 @@ public class Calculator {
 				System.out.print("Enter your age: ");
 				fd.setAgeOfACHolder(sc.nextInt());
 				System.out.println("Interest gained is: Rs. "+ fd.calculateInterest());
+				break;
 			}
 			
 			case 3:

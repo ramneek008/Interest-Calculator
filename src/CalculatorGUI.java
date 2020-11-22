@@ -6,6 +6,7 @@ public class CalculatorGUI implements ActionListener {
 	JRadioButton rb1, rb2, rb3;
 	JLabel l1, l2, l3, l4, l5;
 	JTextField tf1, tf2, tf3, tf4;
+	JButton b;
 	CalculatorGUI(){
 		f = new JFrame("Interest Calculator");
 		
@@ -36,10 +37,10 @@ public class CalculatorGUI implements ActionListener {
 		l4 = new JLabel();
 		l5 = new JLabel("Interest Gained (in Rs.) :");
 		
-		l2.setBounds(100,150,150,30);
-		l3.setBounds(100,180,150,30);
-		l4.setBounds(100,210,150,30);
-		l5.setBounds(100,240,150,30);
+		l2.setBounds(100,160,150,30);
+		l3.setBounds(100,190,150,30);
+		l4.setBounds(100,220,150,30);
+		l5.setBounds(100,250,150,30);
 		f.add(l2);f.add(l3);f.add(l4);f.add(l5);
 		
 		l2.setVisible(false);l3.setVisible(false);l4.setVisible(false);l5.setVisible(false);
@@ -49,14 +50,21 @@ public class CalculatorGUI implements ActionListener {
 		tf3= new JTextField();
 		tf4= new JTextField();
 		
-		tf1.setBounds(270,155,150,25);
-		tf2.setBounds(270,185,150,25);
-		tf3.setBounds(270,215,150,25);
-		tf4.setBounds(270,245,150,25);
+		tf1.setBounds(300,165,150,25);
+		tf2.setBounds(300,195,150,25);
+		tf3.setBounds(300,225,150,25);
+		tf4.setBounds(300,255,150,25);
 		tf4.setEditable(false);
 		f.add(tf1);f.add(tf2);f.add(tf3);f.add(tf4);
 		
 		tf1.setVisible(false);tf2.setVisible(false);tf3.setVisible(false);tf4.setVisible(false);
+		
+		b = new JButton("Calculate");
+		b.setBounds(220,300,100,25);
+		f.add(b);
+		b.setVisible(false);
+		b.addActionListener(this);
+		
 		
 		f.setSize(600,400);
 		f.setLayout(null);
@@ -64,25 +72,69 @@ public class CalculatorGUI implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(rb1.isSelected()) {
+		if(e.getSource()==b && rb1.isSelected()) {
+			FDAccount fd = new FDAccount();
+			String s1 = tf1.getText();
+			String s2 = tf2.getText();
+			String s3 = tf3.getText();
+			fd.setAmount(Double.parseDouble(s1));
+			fd.setNoOfDays(Integer.parseInt(s2));
+			fd.setAgeOfACHolder(Integer.parseInt(s3));
+			double interest = fd.calculateInterest();
+			String res = String.valueOf(interest);
+			tf4.setText(res);
+		}
+		
+		else if(e.getSource()==b && rb2.isSelected()) {
+			RDAccount rd = new RDAccount();
+			String s1 = tf1.getText();
+			String s2 = tf2.getText();
+			String s3 = tf3.getText();
+			rd.setMonthlyAmount(Double.parseDouble(s1));
+			rd.setNoOfMonths(Integer.parseInt(s2));
+			rd.setAge(Integer.parseInt(s3));
+			double interest = rd.calculateInterest();
+			String res= String.valueOf(interest);
+			tf4.setText(res);
+		}
+		
+		else if(e.getSource()==b && rb3.isSelected()) {
+			SBAccount sb = new SBAccount();
+			String s1 = tf1.getText();
+			sb.setAmount(Double.parseDouble(s1));
+			double interest = sb.calculateInterest();
+			String res = String.valueOf(interest);
+			tf4.setText(res);
+		}
+		
+		else if(rb1.isSelected()) {
 			l2.setText("FD Amount :");
 			l3.setText("No. of days :");
 			l4.setText("Your age :");
 			l2.setVisible(true);l3.setVisible(true);l4.setVisible(true);l5.setVisible(true);
 			tf1.setVisible(true);tf2.setVisible(true);tf3.setVisible(true);tf4.setVisible(true);
+			b.setVisible(true);
+			tf1.setText("");tf2.setText("");tf3.setText("");tf4.setText("");			
 		}
-		if(rb2.isSelected()) {
+		
+		else if(rb2.isSelected()) {
 			l2.setText("Monthly Amount :");
 			l3.setText("No. of months :");
 			l4.setText("Your age :");
 			l2.setVisible(true);l3.setVisible(true);l4.setVisible(true);l5.setVisible(true);
 			tf1.setVisible(true);tf2.setVisible(true);tf3.setVisible(true);tf4.setVisible(true);
+			b.setVisible(true);
+			tf1.setText("");tf2.setText("");tf3.setText("");tf4.setText("");	
 		}
-		if(rb3.isSelected()) {
+		
+		else if(rb3.isSelected()) {
 			l2.setText("Average Amount :");
 			l2.setVisible(true);l3.setVisible(false);l4.setVisible(false);l5.setVisible(true);
 			tf1.setVisible(true);tf2.setVisible(false);tf3.setVisible(false);tf4.setVisible(true);
+			b.setVisible(true);
+			tf1.setText("");tf2.setText("");tf3.setText("");tf4.setText("");	
 		}
+		
 		
 	}
 

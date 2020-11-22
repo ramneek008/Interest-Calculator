@@ -20,6 +20,12 @@ public class Calculator {
 				SBAccount sb = new SBAccount();
 				System.out.print("Enter the Average amount in your account: ");
 				sb.setAmount(sc.nextDouble());
+				System.out.println("Type of account:\n 1. Normal\n 2. NRI ");
+				int t = sc.nextInt();
+				if(t==1)
+					sb.setAccountType("normal");
+				else if(t==2)
+					sb.setAccountType("nri");
 				System.out.println("Interest gained: Rs. " + sb.calculateInterest());
 				break;
 			}

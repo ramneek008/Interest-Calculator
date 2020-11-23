@@ -3,7 +3,7 @@ import java.awt.event.*;
 
 public class CalculatorGUI implements ActionListener {
 	JFrame f;
-	JRadioButton rb1, rb2, rb3;
+	JRadioButton rb1, rb2, rb3, rb4, rb5;
 	JLabel l1, l2, l3, l4, l5;
 	JTextField tf1, tf2, tf3, tf4;
 	JButton b;
@@ -59,6 +59,15 @@ public class CalculatorGUI implements ActionListener {
 		
 		tf1.setVisible(false);tf2.setVisible(false);tf3.setVisible(false);tf4.setVisible(false);
 		
+		rb4 = new JRadioButton("Normal");
+		rb5 = new JRadioButton("NRI");
+		rb4.setBounds(300,195,150,25);
+		rb5.setBounds(300,215,150,25);
+		ButtonGroup bg2 = new ButtonGroup();
+		bg2.add(rb4);bg2.add(rb5);
+		f.add(rb4);f.add(rb5);
+		rb4.setVisible(false);rb5.setVisible(false);
+		
 		b = new JButton("Calculate");
 		b.setBounds(220,300,100,25);
 		f.add(b);
@@ -102,6 +111,10 @@ public class CalculatorGUI implements ActionListener {
 			SBAccount sb = new SBAccount();
 			String s1 = tf1.getText();
 			sb.setAmount(Double.parseDouble(s1));
+			if(rb4.isSelected())
+				sb.setAccountType("normal");
+			else if(rb5.isSelected())
+				sb.setAccountType("nri");
 			double interest = sb.calculateInterest();
 			String res = String.valueOf(interest);
 			tf4.setText(res);
@@ -113,6 +126,7 @@ public class CalculatorGUI implements ActionListener {
 			l4.setText("Your age :");
 			l2.setVisible(true);l3.setVisible(true);l4.setVisible(true);l5.setVisible(true);
 			tf1.setVisible(true);tf2.setVisible(true);tf3.setVisible(true);tf4.setVisible(true);
+			rb4.setVisible(false);rb5.setVisible(false);
 			b.setVisible(true);
 			tf1.setText("");tf2.setText("");tf3.setText("");tf4.setText("");			
 		}
@@ -123,14 +137,17 @@ public class CalculatorGUI implements ActionListener {
 			l4.setText("Your age :");
 			l2.setVisible(true);l3.setVisible(true);l4.setVisible(true);l5.setVisible(true);
 			tf1.setVisible(true);tf2.setVisible(true);tf3.setVisible(true);tf4.setVisible(true);
+			rb4.setVisible(false);rb5.setVisible(false);
 			b.setVisible(true);
 			tf1.setText("");tf2.setText("");tf3.setText("");tf4.setText("");	
 		}
 		
 		else if(rb3.isSelected()) {
 			l2.setText("Average Amount :");
-			l2.setVisible(true);l3.setVisible(false);l4.setVisible(false);l5.setVisible(true);
+			l3.setText("Type of Account :");
+			l2.setVisible(true);l3.setVisible(true);l4.setVisible(false);l5.setVisible(true);
 			tf1.setVisible(true);tf2.setVisible(false);tf3.setVisible(false);tf4.setVisible(true);
+			rb4.setVisible(true);rb5.setVisible(true);
 			b.setVisible(true);
 			tf1.setText("");tf2.setText("");tf3.setText("");tf4.setText("");	
 		}
@@ -140,7 +157,7 @@ public class CalculatorGUI implements ActionListener {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		CalculatorGUI ob = new CalculatorGUI();
+		new CalculatorGUI();
 	}
 
 }

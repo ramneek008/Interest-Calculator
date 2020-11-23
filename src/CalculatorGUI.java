@@ -1,24 +1,43 @@
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.event.*;
 
 public class CalculatorGUI implements ActionListener {
 	JFrame f;
 	JRadioButton rb1, rb2, rb3, rb4, rb5;
-	JLabel l1, l2, l3, l4, l5;
+	JLabel l, l1, l2, l3, l4, l5;
 	JTextField tf1, tf2, tf3, tf4;
 	JButton b;
 	CalculatorGUI(){
 		f = new JFrame("Interest Calculator");
+		f.getContentPane().setBackground(Color.BLACK);
 		
-		l1 = new JLabel("Select account type:");
-		l1.setBounds(210,20,150,30);
+		l = new JLabel("INTEREST CALCULATOR");
+		l.setBounds(250,20,300,40);
+		l.setFont(l.getFont().deriveFont(23.0f));
+		l.setForeground(Color.ORANGE);
+		f.add(l);
+		
+		l1 = new JLabel("Account Type:");
+		l1.setBounds(70,100,200,30);
+		l1.setFont(l1.getFont().deriveFont(19.0f));
+		l1.setForeground(Color.CYAN);
 		
 		rb1 = new JRadioButton("FD Account");
-		rb1.setBounds(220, 50, 150, 30);
+		rb1.setBounds(380, 105, 120, 25);
+		rb1.setFont(rb1.getFont().deriveFont(15.0f));
 		rb2 = new JRadioButton("RD Account");
-		rb2.setBounds(220, 75, 150, 30);
+		rb2.setBounds(530, 105, 120, 25);
+		rb2.setFont(rb2.getFont().deriveFont(15.0f));
 		rb3 = new JRadioButton("SD Account");
-		rb3.setBounds(220, 100, 150, 30);
+		rb3.setBounds(230, 105, 120, 25);
+		rb3.setFont(rb3.getFont().deriveFont(15.0f));
+		
+		rb1.setBackground(Color.LIGHT_GRAY);rb1.setForeground(Color.BLACK);
+		rb2.setBackground(Color.LIGHT_GRAY);rb2.setForeground(Color.BLACK);
+		rb3.setBackground(Color.LIGHT_GRAY);rb3.setForeground(Color.BLACK);
+		
 		
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(rb1);bg.add(rb2);bg.add(rb3);
@@ -29,19 +48,24 @@ public class CalculatorGUI implements ActionListener {
 		rb2.addActionListener(this);
 		rb3.addActionListener(this);
 
-		f.add(l1);
-		
+		f.add(l1);		
 		
 		l2 = new JLabel();
 		l3 = new JLabel();
 		l4 = new JLabel();
 		l5 = new JLabel("Interest Gained (in Rs.) :");
 		
-		l2.setBounds(100,160,150,30);
-		l3.setBounds(100,190,150,30);
-		l4.setBounds(100,220,150,30);
-		l5.setBounds(100,250,150,30);
+		l2.setBounds(170,180,150,30);
+		l3.setBounds(170,220,150,30);
+		l4.setBounds(170,260,150,30);
+		l5.setBounds(170,300,180,30);
 		f.add(l2);f.add(l3);f.add(l4);f.add(l5);
+		
+		l2.setFont(l2.getFont().deriveFont(15.0f));
+		l3.setFont(l3.getFont().deriveFont(15.0f));
+		l4.setFont(l4.getFont().deriveFont(15.0f));
+		l5.setFont(l5.getFont().deriveFont(15.0f));
+		l2.setForeground(Color.WHITE);l3.setForeground(Color.WHITE);l4.setForeground(Color.WHITE);l5.setForeground(Color.WHITE);
 		
 		l2.setVisible(false);l3.setVisible(false);l4.setVisible(false);l5.setVisible(false);
 		
@@ -50,32 +74,41 @@ public class CalculatorGUI implements ActionListener {
 		tf3= new JTextField();
 		tf4= new JTextField();
 		
-		tf1.setBounds(300,165,150,25);
-		tf2.setBounds(300,195,150,25);
-		tf3.setBounds(300,225,150,25);
-		tf4.setBounds(300,255,150,25);
+		tf1.setBounds(450,185,170,25);
+		tf2.setBounds(450,225,170,25);
+		tf3.setBounds(450,265,170,25);
+		tf4.setBounds(450,305,170,25);
 		tf4.setEditable(false);
 		f.add(tf1);f.add(tf2);f.add(tf3);f.add(tf4);
-		
+
+		tf1.setFont(tf1.getFont().deriveFont(15.0f));
+		tf2.setFont(tf2.getFont().deriveFont(15.0f));
+		tf3.setFont(tf3.getFont().deriveFont(15.0f));
+		tf4.setFont(tf4.getFont().deriveFont(15.0f));
+		tf4.setForeground(Color.CYAN);
+		tf4.setBackground(Color.DARK_GRAY);
 		tf1.setVisible(false);tf2.setVisible(false);tf3.setVisible(false);tf4.setVisible(false);
 		
 		rb4 = new JRadioButton("Normal");
 		rb5 = new JRadioButton("NRI");
-		rb4.setBounds(300,195,150,25);
-		rb5.setBounds(300,215,150,25);
+		rb4.setBounds(450,230,80,25);
+		rb5.setBounds(450,260,80,25);
 		ButtonGroup bg2 = new ButtonGroup();
 		bg2.add(rb4);bg2.add(rb5);
 		f.add(rb4);f.add(rb5);
 		rb4.setVisible(false);rb5.setVisible(false);
 		
 		b = new JButton("Calculate");
-		b.setBounds(220,300,100,25);
+		b.setBounds(340,380,120,30);
+		b.setBackground(Color.ORANGE);
+		b.setForeground(Color.BLACK);
+		b.setFont(b.getFont().deriveFont(16.0f));
 		f.add(b);
 		b.setVisible(false);
 		b.addActionListener(this);
 		
 		
-		f.setSize(600,400);
+		f.setSize(800,500);
 		f.setLayout(null);
 		f.setVisible(true);
 	}
@@ -121,6 +154,9 @@ public class CalculatorGUI implements ActionListener {
 		}
 		
 		else if(rb1.isSelected()) {
+			rb1.setForeground(Color.CYAN);rb1.setBackground(Color.darkGray);
+			rb2.setBackground(Color.LIGHT_GRAY);rb2.setForeground(Color.BLACK);
+			rb3.setBackground(Color.LIGHT_GRAY);rb3.setForeground(Color.BLACK);
 			l2.setText("FD Amount :");
 			l3.setText("No. of days :");
 			l4.setText("Your age :");
@@ -132,6 +168,9 @@ public class CalculatorGUI implements ActionListener {
 		}
 		
 		else if(rb2.isSelected()) {
+			rb2.setForeground(Color.CYAN);rb2.setBackground(Color.darkGray);
+			rb1.setBackground(Color.LIGHT_GRAY);rb1.setForeground(Color.BLACK);
+			rb3.setBackground(Color.LIGHT_GRAY);rb3.setForeground(Color.BLACK);
 			l2.setText("Monthly Amount :");
 			l3.setText("No. of months :");
 			l4.setText("Your age :");
@@ -143,6 +182,9 @@ public class CalculatorGUI implements ActionListener {
 		}
 		
 		else if(rb3.isSelected()) {
+			rb3.setForeground(Color.CYAN);rb3.setBackground(Color.darkGray);
+			rb2.setBackground(Color.LIGHT_GRAY);rb2.setForeground(Color.BLACK);
+			rb1.setBackground(Color.LIGHT_GRAY);rb1.setForeground(Color.BLACK);
 			l2.setText("Average Amount :");
 			l3.setText("Type of Account :");
 			l2.setVisible(true);l3.setVisible(true);l4.setVisible(false);l5.setVisible(true);

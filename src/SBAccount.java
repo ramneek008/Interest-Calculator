@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 
 public class SBAccount extends Account {
 
@@ -35,6 +36,8 @@ public class SBAccount extends Account {
 			setInterestRate(6.00);
 		
 		double interest = getAmount()*getInterestRate()/100;
+		DecimalFormat df = new DecimalFormat("0.00");
+		interest = Double.parseDouble(df.format(interest));
 		return interest;
 	}
 

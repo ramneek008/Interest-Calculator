@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 
 public class RDAccount extends Account {
 	
@@ -120,6 +121,8 @@ public class RDAccount extends Account {
 		
 		double amount = monthlyAmount*noOfMonths;
 		double interest = (monthlyAmount*(Math.pow(1+(interestRate/400), noOfMonths/3)-1))/(1-(1/Math.cbrt(1+(interestRate/400)))) - amount;
+		DecimalFormat df = new DecimalFormat("0.00");
+		interest = Double.parseDouble(df.format(interest));
 		return interest;
 	}
 }

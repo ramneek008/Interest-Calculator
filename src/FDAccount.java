@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 
 public class FDAccount extends Account{
 
@@ -127,7 +128,8 @@ public class FDAccount extends Account{
 		}
 		
 		double interest = getAmount()*getInterestRate()/100;
-		
+		DecimalFormat df = new DecimalFormat("0.00");
+		interest = Double.parseDouble(df.format(interest));
 		return interest;
 	}
 	
